@@ -60,6 +60,12 @@ dependencies {
     implementation("androidx.compose.material:material-icons-extended:1.7.8")
     implementation("com.google.mlkit:text-recognition:16.0.1")
 
+    val camerax_version = "1.3.0"
+    implementation("androidx.camera:camera-core:$camerax_version")
+    implementation("androidx.camera:camera-camera2:$camerax_version")
+    implementation("androidx.camera:camera-lifecycle:$camerax_version")
+    implementation("androidx.camera:camera-view:$camerax_version")
+
     // 4. Testing (Keep your existing testing setup)
     testImplementation(libs.junit)
     androidTestImplementation(platform(libs.androidx.compose.bom))

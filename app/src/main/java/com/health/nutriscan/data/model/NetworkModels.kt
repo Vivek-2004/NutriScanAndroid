@@ -1,52 +1,65 @@
 package com.health.nutriscan.data.model
 
-enum class ProductCategory {
-    FOOD, BEVERAGE, COSMETIC, PHARMACEUTICAL
-}
+import com.google.gson.annotations.SerializedName
 
-enum class ProductType {
-    SOLID, LIQUID, SEMI_SOLID
-}
-
-data class UserRequest(
-    val name: String,
-    val email: String
-)
-
-data class UserResponse(
-    val id: Long,
-    val name: String,
-    val email: String
-)
-
+// --- POST Scan Endpoints ---
 data class ScanRequest(
-    val userId: Long,
-    val productName: String,
-    val category: ProductCategory,
-    val productType: ProductType,
-    val ingredientsText: String
-)
-
-data class IngredientAnalysis(
-    val name: String,
-    val safetyRating: String, // e.g., "SAFE", "MODERATE", "HAZARDOUS"
-    val risks: String,
-    val description: String
+    @SerializedName("ingredients") val ingredients: String,
+    @SerializedName("productCategory") val productCategory: String = "FOOD"
 )
 
 data class ScanResponse(
-    val id: Long,
-    val productName: String,
-    val category: ProductCategory,
-    val productType: ProductType,
-    val overallScore: Int, // Health rating from 0 to 100
-    val ingredientsAnalysis: List<IngredientAnalysis>,
-    val recommendations: String
+    @SerializedName("productName") val productName: String?,
+    @SerializedName("results") val results: List<IngredientResult>,
+    @SerializedName("safetyScore") val safetyScore: Int,
+    @SerializedName("overallAssessment") val overallAssessment: String,
+    @SerializedName("warningsFor") val warningsFor: List<String>
 )
 
-data class ScanSummary(
-    val id: Long,
-    val productName: String,
-    val overallScore: Int,
-    val category: ProductCategory
+data class IngredientResult(
+    @SerializedName("ingredientName") val ingredientName: String,
+    @SerializedName("risk") val risk: String,
+    @SerializedName("severity") val severity: String,
+    @SerializedName("explanation") val explanation: String,
+    @SerializedName("description") val description: String,
+    @SerializedName("category") val category: String,
+    @SerializedName("sideEffects") val sideEffects: List<String>
+)
+
+// --- GET History Endpoints ---
+data class HistoryItem(
+    @SerializedName("scanId") val scanId: Int,
+    @SerializedName("productName") val productName: String?,
+    @SerializedName("scannedAt") val scannedAt: String,
+    @SerializedName("userId") val userId: Int,
+    @SerializedName("userName") val userName: String,
+    @SerializedName("results") val results: List<HistoryIngredientResult>,
+    @SerializedName("summary") val summary: HistorySummary
+)
+
+data class HistoryIngredientResult(
+    @SerializedName("resultId") val resultId: Int,
+    @SerializedName("ingredientName") val ingredientName: String,
+    @SerializedName("risk") val risk: String,
+    @SerializedName("severity") val severity: String?,
+    @SerializedName("explanation") val explanation: String,
+    @SerializedName("description") val description: String,
+    @SerializedName("category") val category: String,
+    @SerializedName("sideEffects") val sideEffects: String?
+)
+
+data class HistorySummary(
+    @SerializedName("totalIngredients") val totalIngredients: Int,
+    @SerializedName("lowRiskCount") val lowRiskCount: Int,
+    @SerializedName("mediumRiskCount") val mediumRiskCount: Int,
+    @SerializedName("highRiskCount") val highRiskCount: Int,
+    @SerializedName("overallRisk") val overallRisk: String
+)
+
+// --- General Error Handling ---
+data class ErrorResponse(
+    @SerializedName("status") val status: Int,
+    @SerializedName("message") val message: String,
+    @SerializedName("error") val error: String,
+    @SerializedName("timestamp") val timestamp: String
 )
