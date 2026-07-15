@@ -6,7 +6,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
 object RetrofitInstance {
-    private const val BASE_URL = "http://10.103.67.44:8080/"
+    private const val BASE_URL = "https://nutricheck-api.up.railway.app/"
 
     // Configure OkHttpClient with a 45-second timeout to safely accommodate
     // the 30-second backend processing time plus network latency.

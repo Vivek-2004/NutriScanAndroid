@@ -49,22 +49,21 @@ dependencies {
     implementation(libs.androidx.compose.material3)
 
     // 2. Lifecycle & Navigation (Add these for the app structure)
-    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.11.0")
-    implementation("androidx.navigation:navigation-compose:2.9.8")
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
+    implementation(libs.androidx.navigation.compose)
 
     // 3. Retrofit & Networking (Add these for backend communication)
-    implementation("com.squareup.retrofit2:retrofit:3.0.0")
-    implementation("com.squareup.retrofit2:converter-gson:3.0.0")
-    implementation("com.squareup.okhttp3:logging-interceptor:5.4.0")
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
+    implementation(libs.logging.interceptor)
 
-    implementation("androidx.compose.material:material-icons-extended:1.7.8")
-    implementation("com.google.mlkit:text-recognition:16.0.1")
+    implementation(libs.androidx.compose.material.icons.extended)
+    implementation(libs.text.recognition)
 
-    val camerax_version = "1.3.0"
-    implementation("androidx.camera:camera-core:$camerax_version")
-    implementation("androidx.camera:camera-camera2:$camerax_version")
-    implementation("androidx.camera:camera-lifecycle:$camerax_version")
-    implementation("androidx.camera:camera-view:$camerax_version")
+    implementation(libs.androidx.camera.core)
+    implementation(libs.androidx.camera.camera2)
+    implementation(libs.androidx.camera.lifecycle)
+    implementation(libs.androidx.camera.view)
 
     // 4. Testing (Keep your existing testing setup)
     testImplementation(libs.junit)
