@@ -1,5 +1,6 @@
 package com.health.nutriscan.data.repository
 
+import android.util.Log
 import com.google.gson.Gson
 import com.health.nutriscan.data.model.ErrorResponse
 import com.health.nutriscan.data.model.HistoryItem
@@ -16,7 +17,9 @@ class NutriCheckRepository {
     suspend fun scanIngredients(ingredientsText: String): Result<ScanResponse> {
         return withContext(Dispatchers.IO) {
             try {
-                val response = apiService.scanIngredients(ScanRequest(ingredientsText))
+                val request = ScanRequest(ingredientsText)
+                Log.e("Vivek", request.toString())
+                val response = apiService.scanIngredients(request)
                 if (response.isSuccessful && response.body() != null) {
                     Result.success(response.body()!!)
                 } else {

@@ -23,7 +23,7 @@ data class IngredientResult(
     @SerializedName("explanation") val explanation: String,
     @SerializedName("description") val description: String,
     @SerializedName("category") val category: String,
-    @SerializedName("sideEffects") val sideEffects: List<String>
+    @SerializedName("sideEffects") val sideEffects: String?
 )
 
 // --- GET History Endpoints ---

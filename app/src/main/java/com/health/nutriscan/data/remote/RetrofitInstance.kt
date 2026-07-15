@@ -11,9 +11,9 @@ object RetrofitInstance {
     // Configure OkHttpClient with a 45-second timeout to safely accommodate
     // the 30-second backend processing time plus network latency.
     private val client = OkHttpClient.Builder()
-        .connectTimeout(45, TimeUnit.SECONDS)
-        .readTimeout(45, TimeUnit.SECONDS)
-        .writeTimeout(45, TimeUnit.SECONDS)
+        .connectTimeout(120, TimeUnit.SECONDS)
+        .readTimeout(120, TimeUnit.SECONDS)
+        .writeTimeout(120, TimeUnit.SECONDS)
         .build()
 
     val api: NutriCheckApiService by lazy {
